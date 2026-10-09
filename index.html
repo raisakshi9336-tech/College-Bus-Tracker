@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SHEAT College Bus Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="logo">🚌</div>
+
+            <div>
+                <h1>SHEAT College</h1>
+                <p>College Bus Tracker</p>
+            </div>
+
+        </div>
+
+        <div class="online">
+            <span></span>
+            System Online
+        </div>
+
+    </header>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav class="navigation">
+
+        <button
+            class="nav-btn active"
+            id="studentBtn"
+            onclick="showSection('student')">
+
+            🎓 Student
+
+        </button>
+
+        <button
+            class="nav-btn"
+            id="driverBtn"
+            onclick="showSection('driver')">
+
+            🚌 Driver
+
+        </button>
+
+        <button
+            class="nav-btn"
+            id="adminBtn"
+            onclick="showSection('admin')">
+
+            👨‍💼 Admin
+
+        </button>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-container">
+
+
+        <!-- ================================================= -->
+        <!-- STUDENT SECTION -->
+        <!-- ================================================= -->
+
+        <section id="studentSection" class="section active-section">
+
+            <div class="hero">
+
+                <div>
+
+                    <h2>Track Your College Bus</h2>
+
+                    <p>
+                        Check the current status of SHEAT College buses
+                        through real-time updates.
+                    </p>
+
+                </div>
+
+                <div class="hero-bus">
+                    🚌
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchBus"
+                    placeholder="Search bus e.g. SHEAT-01"
+                    oninput="searchBus()">
+
+            </div>
+
+
+            <!-- ACTIVE BUS HEADER -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Active Buses</h2>
+
+                    <p>
+                        Live updates from college transport
+                    </p>
+
+                </div>
+
+                <div
+                    class="active-count"
+                    id="activeCount">
+
+                    0 Active
+
+                </div>
+
+            </div>
+
+
+            <!-- BUS CARDS -->
+
+            <div
+                class="bus-grid"
+                id="busContainer">
+
+                <div class="loading">
+                    Loading buses...
+                </div>
+
+            </div>
+
+
+            <!-- NO BUS MESSAGE -->
+
+            <div
+                id="noBusMessage"
+                class="no-bus"
+                style="display:none;">
+
+                <div>🚌</div>
+
+                <h3>No Active Bus</h3>
+
+                <p>
+                    No bus has been updated for the current session yet.
+                    Please check again after the driver updates the bus.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- DRIVER SECTION -->
+        <!-- ================================================= -->
+
+        <section
+            id="driverSection"
+            class="section">
+
+            <div class="page-title">
+
+                <h2>🚌 Driver Dashboard</h2>
+
+                <p>
+                    Update your bus status for students.
+                </p>
+
+            </div>
+
+
+            <div class="driver-card">
+
+                <h3>Update Bus Information</h3>
+
+
+                <label for="driverBus">
+                    Select Bus
+                </label>
+
+                <select id="driverBus">
+
+                    <option value="bus1">SHEAT-01</option>
+                    <option value="bus2">SHEAT-02</option>
+                    <option value="bus3">SHEAT-03</option>
+                    <option value="bus4">SHEAT-04</option>
+                    <option value="bus5">SHEAT-05</option>
+
+                </select>
+
+
+                <label for="driverRoute">
+                    Route
+                </label>
+
+                <select id="driverRoute">
+
+                    <option value="Route A">Route A</option>
+                    <option value="Route B">Route B</option>
+                    <option value="Route C">Route C</option>
+                    <option value="Route D">Route D</option>
+                    <option value="Route E">Route E</option>
+
+                </select>
+
+
+                <label for="currentStop">
+                    Current Stop
+                </label>
+
+                <select id="currentStop">
+
+                    <option value="Shivpur">
+                        Shivpur
+                    </option>
+
+                    <option value="Lanka">
+                        Lanka
+                    </option>
+
+                    <option value="Ashapur">
+                        Ashapur
+                    </option>
+
+                    <option value="Chaukaghat">
+                        Chaukaghat
+                    </option>
+
+                    <option value="Cantt">
+                        Cantt
+                    </option>
+
+                    <option value="BHU Gate">
+                        BHU Gate
+                    </option>
+
+                    <option value="SHEAT College">
+                        SHEAT College
+                    </option>
+
+                </select>
+
+
+                <label for="nextStop">
+                    Next Stop
+                </label>
+
+                <select id="nextStop">
+
+                    <option value="Lanka">
+                        Lanka
+                    </option>
+
+                    <option value="BHU Gate">
+                        BHU Gate
+                    </option>
+
+                    <option value="SHEAT College">
+                        SHEAT College
+                    </option>
+
+                    <option value="Ashapur">
+                        Ashapur
+                    </option>
+
+                    <option value="Chaukaghat">
+                        Chaukaghat
+                    </option>
+
+                    <option value="Cantt">
+                        Cantt
+                    </option>
+
+                </select>
+
+
+                <label for="busStatus">
+                    Bus Status
+                </label>
+
+                <select id="busStatus">
+
+                    <option value="On Route">
+                        On Route
+                    </option>
+
+                    <option value="Delayed">
+                        Delayed
+                    </option>
+
+                    <option value="Stopped">
+                        Stopped
+                    </option>
+
+                    <option value="Reached College">
+                        Reached College
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="update-btn"
+                    onclick="updateBus()">
+
+                    🔄 Update Bus
+
+                </button>
+
+
+                <div
+                    id="driverMessage"
+                    class="message">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- ADMIN SECTION -->
+        <!-- ================================================= -->
+
+        <section
+            id="adminSection"
+            class="section">
+
+            <div class="page-title">
+
+                <h2>👨‍💼 Admin Dashboard</h2>
+
+                <p>
+                    Monitor all college buses.
+                </p>
+
+            </div>
+
+
+            <div class="admin-summary">
+
+                <div class="summary-card">
+
+                    <span>🚌</span>
+
+                    <div>
+
+                        <h3 id="totalBuses">
+                            5
+                        </h3>
+
+                        <p>Total Buses</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>🟢</span>
+
+                    <div>
+
+                        <h3 id="adminActive">
+                            0
+                        </h3>
+
+                        <p>Active Now</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Bus</th>
+                            <th>Route</th>
+                            <th>Current Stop</th>
+                            <th>Next Stop</th>
+                            <th>Status</th>
+                            <th>Last Update</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="adminTable">
+
+                        <tr>
+                            <td colspan="6">
+                                Loading...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>🚌 SHEAT College Bus Tracker</h3>
+
+        <p>
+            Smart • Simple • Real-Time College Transportation
+        </p>
+
+        <small>
+            Developed as a smart college transportation solution.
+        </small>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script type="module" src="app.js"></script>
+
+</body>
+</html>
